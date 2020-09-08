@@ -9,7 +9,8 @@ using namespace std;
 /********************************
 *   GLOBAL VARS                **
 ********************************/
-map<string, Candidate> RoleMap;
+map<string, string> RoleMap;
+map<string, string>::iterator iter;
 vector<string> RolesList;
 vector<Candidate> CandidateList;
 
@@ -64,15 +65,23 @@ int main() {
 
       if (NewCandidate->getName().compare("quit") != 0 && NewCandidate->getName().compare("") != 0)
         CandidateList.insert(CandidateList.end(), *NewCandidate);
-    } while (candidateInputName.compare("quit") != 0 && candidateInputName.compare("") != 0);
+    } while (candidateInputName.compare("quit") != 0);
 
     /************************************
     *   ASSIGN CANIDATES ROLES IN A    **
     *    FIRST COME FIRST SERVER ORDER **
     ************************************/
-    
+    for (int i = 0; i < RolesList.size(); i++)
+      RoleMap.insert(pair<string, string>(RolesList[i], CandidateList[i].getName()));
 
   } else if (modeSelection == 2) {
+    /********************************
+    *   MODE SELECTION: OUTPUT     **
+    ********************************/
 
+    iter = RoleMap.begin();
+
+    while (iter != RoleMap.end())
+      cout << iter->first << "\t" << iter->second << endl;
   }
 }
