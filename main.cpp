@@ -23,6 +23,21 @@ void initRolesList() {
   RolesList.insert(RolesList.end(), "Junior Dev");
 }
 
+/********************************
+*   CREATE FUNCTION TO PRINT   **
+*     ASSIGNED ROLES           **
+********************************/
+void printAssignedRoles() {
+    iter = RoleMap.begin();
+
+    cout << "Role" << "\t" << "Candidate" << endl;
+
+    while (iter != RoleMap.end()) {
+      cout << iter->first << "\t" << iter->second << endl;  
+      iter++;
+    }
+}
+
 int main() {
   /************************************
   *   DECLARE VARS                   **
@@ -74,14 +89,16 @@ int main() {
     for (int i = 0; i < RolesList.size(); i++)
       RoleMap.insert(pair<string, string>(RolesList[i], CandidateList[i].getName()));
 
+    /*************************************
+    *   DISPLAY THE ASSIGNED ROLES      **
+    *************************************/
+    printAssignedRoles();
+
   } else if (modeSelection == 2) {
     /********************************
     *   MODE SELECTION: OUTPUT     **
     ********************************/
 
-    iter = RoleMap.begin();
-
-    while (iter != RoleMap.end())
-      cout << iter->first << "\t" << iter->second << endl;
+    printAssignedRoles();
   }
 }
