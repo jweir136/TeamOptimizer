@@ -10,7 +10,17 @@ using namespace std;
 *   GLOBAL VARS                **
 ********************************/
 map<string, Candidate> RoleMap;
+vector<string> RolesList;
 vector<Candidate> CandidateList;
+
+/********************************
+*   CREATE INIT FUNCTIONS      **
+********************************/
+void initRolesList() {
+  RolesList.insert(RolesList.end(), "Project Manager");
+  RolesList.insert(RolesList.end(), "Senior Dev");
+  RolesList.insert(RolesList.end(), "Junior Dev");
+}
 
 int main() {
   /************************************
@@ -18,6 +28,11 @@ int main() {
   ************************************/
   int modeSelection = 0;
   string candidateInputName;
+
+  /************************************
+  *   CALL ALL INIT FUNCTIONS        **
+  ************************************/
+  initRolesList();
 
   /************************************
   *   MSG OUTPUT                     **
@@ -47,10 +62,15 @@ int main() {
 
       Candidate *NewCandidate = new Candidate(candidateInputName);
 
-      if (NewCandidate->getName().compare("quit") != 0)
-        CandidateList.insert(CandidateList.begin(), *NewCandidate);
+      if (NewCandidate->getName().compare("quit") != 0 && NewCandidate->getName().compare("") != 0)
+        CandidateList.insert(CandidateList.end(), *NewCandidate);
+    } while (candidateInputName.compare("quit") != 0 && candidateInputName.compare("") != 0);
 
-    } while (candidateInputName.compare("quit") != 0);
+    /************************************
+    *   ASSIGN CANIDATES ROLES IN A    **
+    *    FIRST COME FIRST SERVER ORDER **
+    ************************************/
+    
 
   } else if (modeSelection == 2) {
 
