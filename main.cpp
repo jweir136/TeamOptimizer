@@ -35,7 +35,24 @@ void printAssignedRoles() {
 *     REMOVE THEM FROM THE LIST             **
 *********************************************/
 string getBestCandidateAndRemove() {
-  // TODO
+  ///////// FIND THE BEST CANDIDATE BASED ON THEIR FITNESS SCORE /////////////////////////////////////
+  int bestScore = CandidateList[0].calculateFitnessScore();
+  int bestIndex = 0;
+  string bestName = CandidateList[0].getName();
+
+  for (int i = 1; i < CandidateList.size(); i++)
+  {
+    if (CandidateList[i].calculateFitnessScore() > bestScore) {
+      bestScore = CandidateList[i].calculateFitnessScore();
+      bestIndex = i;
+      bestName = CandidateList[i].getName();
+    }
+  }
+
+  //////////// REMOVE THE BEST CANDIDATE //////////////
+  CandidateList.erase(CandidateList.begin() + bestIndex);
+
+  return bestName;
 }
 
 /********************************************
@@ -43,7 +60,15 @@ string getBestCandidateAndRemove() {
 *     TO THE ROLE MAP                      **
 ********************************************/
 void assignRoles() {
-  // todo
+  //////// USE THE getBestCandidateAndRemove FUNCTION TO GET THE BEST PICK FOR THE VARIOUS ROLES ///////////////////////////////
+  string managerName = getBestCandidateAndRemove();
+  string seniorDevName = getBestCandidateAndRemove();
+  string juniorDevName = getBestCandidateAndRemove();
+
+  /////////// MAP THE CHOSEN CANDIDATES TO THE CHOSEN ROLE ////////
+  RoleMap.insert(pair<string, string>("Project Manager", managerName));
+  RoleMap.insert(pair<string, string>("Senior Dev", seniorDevName));
+  RoleMap.insert(pair<string, string>("Junior Dev", juniorDevName));
 }
 
 int main() {
