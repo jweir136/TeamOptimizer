@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Candidate::    Candidate(string name, int yearsOfWorkExperience, int degree, int hasCPPExperience) {
+Candidate::Candidate(string name, int yearsOfWorkExperience, int degree, int hasCPPExperience) {
   this->name = name;
   this->yearsOfWorkExperience = yearsOfWorkExperience;
   this->degree = degree;
